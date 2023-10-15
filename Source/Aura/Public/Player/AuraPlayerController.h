@@ -34,9 +34,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
+	TObjectPtr<IEnemyInterface> LastActor;
+	TObjectPtr<IEnemyInterface> ThisActor;
+
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
-
-	IEnemyInterface* LastActor;
-	IEnemyInterface* ThisActor;
 };
