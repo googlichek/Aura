@@ -33,5 +33,6 @@ protected:
 	TObjectPtr<UAttributeSet> AttributeSet;
 
 	virtual void BeginPlay() override;
+	virtual void InitAbilityActorInfo();
 
 };
