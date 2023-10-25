@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "UObject/WeakInterfacePtr.h"
 #include "AuraPlayerController.generated.h"
 
 struct FInputActionValue;
@@ -34,8 +35,8 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
-	TObjectPtr<IEnemyInterface> LastActor;
-	TObjectPtr<IEnemyInterface> ThisActor;
+	TWeakInterfacePtr<IEnemyInterface> LastActor;
+	TWeakInterfacePtr<IEnemyInterface> ThisActor;
 
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
