@@ -8,7 +8,7 @@
 #include "AttributeInfo.generated.h"
 
 USTRUCT(BlueprintType)
-struct FAUraAttributeInfo
+struct FAuraAttributeInfo
 {
 	GENERATED_BODY()
 
@@ -35,8 +35,8 @@ class AURA_API UAttributeInfo : public UDataAsset
 
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TArray<FAUraAttributeInfo> AttributeInformation;
+	TArray<FAuraAttributeInfo> AttributeInformation;
 
-	FAUraAttributeInfo FindAttributeInfoForTag(const FGameplayTag& AttributeTag, bool bLogNotFound = false) const;
+	FAuraAttributeInfo FindAttributeInfoForTag(const FGameplayTag& AttributeTag, bool bLogNotFound = false) const;
 
 };
