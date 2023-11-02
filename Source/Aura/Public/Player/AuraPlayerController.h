@@ -7,6 +7,8 @@
 #include "UObject/WeakInterfacePtr.h"
 #include "AuraPlayerController.generated.h"
 
+struct FGameplayTag;
+class UAuraInputConfig;
 struct FInputActionValue;
 class UInputMappingContext;
 class UInputAction;
@@ -35,8 +37,15 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
+
 	TWeakInterfacePtr<IEnemyInterface> LastActor;
 	TWeakInterfacePtr<IEnemyInterface> ThisActor;
+
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
 
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
