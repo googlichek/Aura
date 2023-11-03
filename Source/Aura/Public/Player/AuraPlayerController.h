@@ -13,6 +13,7 @@ struct FInputActionValue;
 class UInputMappingContext;
 class UInputAction;
 class IEnemyInterface;
+class UAuraAbilitySystemComponent;
 
 /**
  * 
@@ -40,6 +41,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
 
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+
 	TWeakInterfacePtr<IEnemyInterface> LastActor;
 	TWeakInterfacePtr<IEnemyInterface> ThisActor;
 
@@ -49,4 +53,6 @@ private:
 
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
+
+	UAuraAbilitySystemComponent* GetASC();
 };
