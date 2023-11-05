@@ -7,6 +7,7 @@
 #include "UObject/WeakInterfacePtr.h"
 #include "AuraPlayerController.generated.h"
 
+class USplineComponent;
 struct FGameplayTag;
 class UAuraInputConfig;
 struct FInputActionValue;
@@ -44,8 +45,20 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 
-	TWeakInterfacePtr<IEnemyInterface> LastActor;
-	TWeakInterfacePtr<IEnemyInterface> ThisActor;
+	UPROPERTY(EditDefaultsOnly)
+	float AuroRunAcceptanceRadius = 50.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USplineComponent> Spline;
+
+	FVector CachedDestination = FVector::ZeroVector;
+	float FollowTime = 0.0f;
+	float ShortPressThreshold = 0.5f;
+	bool bAutoRunning = false;
+	bool bTargeting = false;
+
+	IEnemyInterface* LastActor;
+	IEnemyInterface* ThisActor;
 
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
