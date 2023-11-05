@@ -115,7 +115,7 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
 	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
 	{
-		if (GetASC() != nullptr)
+		if (GetASC())
 		{
 			GetASC()->AbilityInputTagHeld(InputTag);
 		}
@@ -123,7 +123,7 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 
 	if (bTargeting)
 	{
-		if (GetASC() != nullptr)
+		if (GetASC())
 		{
 			GetASC()->AbilityInputTagHeld(InputTag);
 		}
