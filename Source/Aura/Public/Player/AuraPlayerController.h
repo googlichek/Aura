@@ -46,7 +46,7 @@ private:
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 
 	UPROPERTY(EditDefaultsOnly)
-	float AuroRunAcceptanceRadius = 50.0f;
+	float AutoRunAcceptanceRadius = 50.0f;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> Spline;
@@ -66,6 +66,8 @@ private:
 
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
+
+	void AutoRun();
 
 	UAuraAbilitySystemComponent* GetASC();
 };
