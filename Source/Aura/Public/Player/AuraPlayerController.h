@@ -40,6 +40,9 @@ private:
 	TObjectPtr<UInputAction> MoveAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UInputAction> ShiftAction;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -56,6 +59,7 @@ private:
 	float ShortPressThreshold = 0.5f;
 	bool bAutoRunning = false;
 	bool bTargeting = false;
+	bool bShiftKeyDown = false;
 
 	IEnemyInterface* LastActor;
 	IEnemyInterface* ThisActor;
@@ -67,6 +71,8 @@ private:
 
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
+	void ShiftPressed();
+	void ShiftReleased();
 
 	void AutoRun();
 
