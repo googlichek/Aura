@@ -4,6 +4,7 @@
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 
 #include "AttributeSet.h"
+#include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
 #include "UI/HUD/AuraHUD.h"
@@ -42,4 +43,36 @@ UAttributeMenuWidgetController* UAuraAbilitySystemLibrary::GetAttributeMenuWidge
 	}
 
 	return nullptr;
+}
+
+void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC)
+{
+	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if (AuraGameMode == nullptr)
+	{
+		return;
+	}
+
+	AActor* AvatarActor = ASC->GetAvatarActor();
+
+	const TObjectPtr<UCharacterClassInfo> CharacterClassInfo = AuraGameMode->CharacterClassInfo;
+	const FCharacterClassDefaultInfo ClassDefaultInfo = CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
+
+	FGameplayEffectContextHandle PrimaryAttributesContext = ASC->MakeEffectContext();
+	PrimaryAttributesContext.AddSourceObject(AvatarActor);
+
+	const FGameplayEffectSpecHandle PrimaryAttributesSpecHandle = ASC->MakeOutgoingSpec(ClassDefaultInfo.PrimaryAttributes, Level, PrimaryAttributesContext);
+	ASC->ApplyGameplayEffectSpecToSelf(*PrimaryAttributesSpecHandle.Data.Get());
+
+	FGameplayEffectContextHandle SecondaryAttributesContext = ASC->MakeEffectContext();
+	SecondaryAttributesContext.AddSourceObject(AvatarActor);
+
+	const FGameplayEffectSpecHandle SecondaryAttributesSpecHandle = ASC->MakeOutgoingSpec(CharacterClassInfo->SecondaryAttributes, Level, SecondaryAttributesContext);
+	ASC->ApplyGameplayEffectSpecToSelf(*SecondaryAttributesSpecHandle.Data.Get());
+
+	FGameplayEffectContextHandle VitalAttributesContext = ASC->MakeEffectContext();
+	VitalAttributesContext.AddSourceObject(AvatarActor);
+
+	const FGameplayEffectSpecHandle VitalAttributesSpecHandle = ASC->MakeOutgoingSpec(CharacterClassInfo->VitalAttributes, Level, VitalAttributesContext);
+	ASC->ApplyGameplayEffectSpecToSelf(*VitalAttributesSpecHandle.Data.Get());
 }
