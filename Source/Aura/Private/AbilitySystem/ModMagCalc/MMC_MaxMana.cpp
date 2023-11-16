@@ -1,7 +1,7 @@
 ﻿// Copyright Turtle Shell Games
 
 
-#include "AbilitySystem/MMC/MMC_MaxMana.h"
+#include "AbilitySystem/ModMagCalc/MMC_MaxMana.h"
 
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "Interaction/CombatInterface.h"
