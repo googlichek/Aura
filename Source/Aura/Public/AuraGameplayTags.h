@@ -1,4 +1,4 @@
-﻿Fire#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
