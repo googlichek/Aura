@@ -138,6 +138,13 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FString("Physical Damage Type")
 		);
 
+	// Abilities
+
+	GameplayTags.Abilities_Attack = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Attack"),
+		FString("Attack Ability Tag")
+		);
+
 	// Resistances
 
 	GameplayTags.Attributes_Resistance_Fire = UGameplayTagsManager::Get().AddNativeGameplayTag(
