@@ -25,8 +25,11 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const;
 
+	// Combat Interface
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
-
+	virtual FVector GetCombatSocketLocation_Implementation() override;
+	virtual AActor* GetAvatar_Implementation() override;
+	virtual bool IsDead_Implementation() const override;
 	virtual void Die() override;
 
 	UFUNCTION(NetMulticast, Reliable)
@@ -55,10 +58,10 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
 	TSubclassOf<UGameplayEffect> DefaultVitalAttributes;
 
+	bool bDead = false;
+
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo();
-
-	virtual FVector GetCombatSocketLocation_Implementation() override;
 
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
 	virtual void InitializeDefaultAttributes() const;
