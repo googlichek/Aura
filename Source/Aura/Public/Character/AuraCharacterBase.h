@@ -31,6 +31,7 @@ public:
 	virtual AActor* GetAvatar_Implementation() override;
 	virtual bool IsDead_Implementation() const override;
 	virtual void Die() override;
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override;
 
 	UFUNCTION(NetMulticast, Reliable)
 	virtual void MulticastHandleDeath();
@@ -42,6 +43,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponTipSocketName;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TArray<FTaggedMontage> AttackMontages;
 
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
