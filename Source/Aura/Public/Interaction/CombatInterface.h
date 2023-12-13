@@ -42,7 +42,7 @@ public:
 	void UpdateFacingTarget(const FVector& Target);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	FVector GetCombatSocketLocation();
+	FVector GetCombatSocketLocation(const FGameplayTag& MontageTag);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	UAnimMontage* GetHitReactMontage();
